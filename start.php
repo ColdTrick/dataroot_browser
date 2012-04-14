@@ -1,24 +1,8 @@
 <?php 
 
-	function dataroot_browser_init(){
-		
-		extend_view("css", "dataroot_browser/css");
-		
-		register_page_handler('dataroot_browser','dataroot_browser_page_handler');
-	}
-	
-	function dataroot_browser_pagesetup(){
-		if (get_context() == 'admin' && isadminloggedin()) {
-			global $CONFIG;
-			add_submenu_item(elgg_echo('dataroot_browser:menu:title'), $CONFIG->wwwroot . 'pg/dataroot_browser/');
-		}
-	}
-	
-	function dataroot_browser_page_handler($page){
-		global $CONFIG;
-		
-		// only interested in one page for now
-		include($CONFIG->pluginspath . "dataroot_browser/pages/browse.php");
+	function dataroot_browser_init(){		
+		elgg_extend_view("css/admin", "dataroot_browser/css/admin");
+		elgg_register_admin_menu_item("administer", "dataroot_browser", "administer_utilities");
 	}
 	
 	function dataroot_browser_format_size($size) {
@@ -31,9 +15,7 @@
 	}
 	
 	// register default elgg events
-	register_elgg_event_handler('init','system','dataroot_browser_init');
-	register_elgg_event_handler('pagesetup','system','dataroot_browser_pagesetup');
+	elgg_register_event_handler('init','system','dataroot_browser_init');
 	
 	// register actions
-	register_action("dataroot_browser/delete_file", false, dirname(__FILE__) . "/actions/delete_file.php", true);
-?>
+	elgg_register_action("dataroot_browser/delete_file", dirname(__FILE__) . "/actions/delete_file.php", "admin");

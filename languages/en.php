@@ -3,7 +3,8 @@
 	$english = array(
 		'dataroot_browser' => "Dataroot Browser",
 	
-		'dataroot_browser:menu:title' => "Dataroot Browser",
+		'admin:administer_utilities:dataroot_browser' => "Dataroot Browser",
+		
 		'dataroot_browser:list:current_dir' => "Current",
 		'dataroot_browser:list:invalid_dir' => "Invalid directory. Restart browsing",
 	
@@ -24,5 +25,3 @@
 	);
 	
 	add_translation("en", $english);
-
-?>
