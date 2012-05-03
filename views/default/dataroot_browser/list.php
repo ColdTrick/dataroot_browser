@@ -13,6 +13,10 @@
 			echo " <a class='dataroot_browser_up' href='" . $vars["url"] . "admin/administer_utilities/dataroot_browser?dir=" . urlencode($parent_dir) . "'></a>";
 		}
 		echo "<br /><br />";
+		
+		$dir_items = "";
+		$file_items = "";
+		
 		foreach($dir_data as $file){
 			if($file != "." && $file != ".."){
 				if(is_dir($root_dir . $file)){
