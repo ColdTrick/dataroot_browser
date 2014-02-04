@@ -8,7 +8,7 @@
 }
 
 #dataroot_browser_list tr:hover {
-	background-color: #cecece; 
+	background-color: #cecece;
 }
 
 #dataroot_browser_list tr:hover td {
@@ -36,7 +36,7 @@
 }
 
 #dataroot_browser_list .dataroot_browser_file {
-	background: transparent url(<?php echo $vars['url']; ?>mod/dataroot_browser/_graphics/file.png) no-repeat left top; 
+	background: transparent url(<?php echo $vars['url']; ?>mod/dataroot_browser/_graphics/file.png) no-repeat left top;
 }
 
 .dataroot_browser_up {
@@ -44,15 +44,4 @@
 	width: 16px;
 	height: 16px;
 	background: transparent url(<?php echo $vars['url']; ?>mod/dataroot_browser/_graphics/up.png) no-repeat left top;
-}
-
-#dataroot_browser_list .dataroot_browser_delete {
-	width: 14px;
-	height: 15px;
-	background: transparent url(<?php echo $vars['url']; ?>_graphics/icon_customise_remove.png) no-repeat left top;
-	display: inline-block;
-}
-
-#dataroot_browser_list .dataroot_browser_delete:hover {
-	background-position: 0 -16px;
 }
