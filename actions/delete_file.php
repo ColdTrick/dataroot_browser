@@ -4,7 +4,7 @@ $file = get_input("file");
 
 if (!empty($file)) {
 	if (!stristr($file, "/.") && !stristr($file, "/..")) {
-		$file_path = str_replace("//", "/", elgg_get_config("dataroot") . $file);
+		$file_path = str_replace("//", "/", elgg_get_data_path() . $file);
 		
 		if (file_exists($file_path) && !is_dir($file_path)) {
 			if (unlink($file_path)) {
