@@ -26,9 +26,9 @@ if ($dir_data !== false) {
 	
 	foreach ($dir_data as $file) {
 		if (($file != ".") && ($file != "..")) {
-			$stats = stat($root_dir. $file);
+			$stats = stat($root_dir . $file);
 			
-			$last_modified = date ("Y/m/d H:i:s", $stats["mtime"]);
+			$last_modified = date("Y/m/d H:i:s", $stats["mtime"]);
 			
 			if (is_callable("posix_getpwuid")) {
 				$owner = posix_getpwuid($stats["uid"]);
@@ -38,7 +38,7 @@ if ($dir_data !== false) {
 			}
 			
 			$writeable = elgg_echo("option:no");
-			if (is_writeable($root_dir. $file)) {
+			if (is_writeable($root_dir . $file)) {
 				$writeable = elgg_echo("option:yes");
 			}
 			
@@ -93,11 +93,11 @@ if ($dir_data !== false) {
 	echo "<th>" . elgg_echo("delete") . "</th>";
 	echo "</tr>";
 	
-	if($dir_items){
+	if ($dir_items) {
 		echo $dir_items;
 	}
 	
-	if($file_items){
+	if ($file_items) {
 		echo $file_items;
 	}
 	echo "</table>";

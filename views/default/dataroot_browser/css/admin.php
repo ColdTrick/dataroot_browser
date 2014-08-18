@@ -32,16 +32,16 @@
 }
 
 #dataroot_browser_list .dataroot_browser_folder {
-	background: transparent url(<?php echo $vars['url']; ?>mod/dataroot_browser/_graphics/folder.png) no-repeat left top;
+	background: transparent url(<?php echo elgg_get_site_url(); ?>mod/dataroot_browser/_graphics/folder.png) no-repeat left top;
 }
 
 #dataroot_browser_list .dataroot_browser_file {
-	background: transparent url(<?php echo $vars['url']; ?>mod/dataroot_browser/_graphics/file.png) no-repeat left top;
+	background: transparent url(<?php echo elgg_get_site_url(); ?>mod/dataroot_browser/_graphics/file.png) no-repeat left top;
 }
 
 .dataroot_browser_up {
 	display: inline-block;
 	width: 16px;
 	height: 16px;
-	background: transparent url(<?php echo $vars['url']; ?>mod/dataroot_browser/_graphics/up.png) no-repeat left top;
+	background: transparent url(<?php echo elgg_get_site_url(); ?>mod/dataroot_browser/_graphics/up.png) no-repeat left top;
 }
