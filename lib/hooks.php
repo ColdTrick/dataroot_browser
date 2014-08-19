@@ -37,15 +37,10 @@ function dataroot_browser_register_user_hover_menu_hook($hook, $type, $return_va
 	if (!isset($user_dirs[$user->getGUID()])) {
 		$user_dirs[$user->getGUID()] = false;
 		
-		$fh = new ElggFile();
-		$fh->owner_guid = $user->getGUID();
-		$fh->setFilename("dummy");
+		$edl = new Elgg_EntityDirLocator($user->getGUID());
+		$path = $edl->getPath();
 		
-		$path = $fh->getFilenameOnFilestore();
-		$path = substr($path, 0, -5);
-		
-		if (is_dir($path)) {
-			$path = str_ireplace(elgg_get_data_path(), "", $path);
+		if (is_dir(elgg_get_data_path() . $path)) {
 			$path = substr($path, 0, -1);
 		
 			$user_dirs[$user->getGUID()] = ElggMenuItem::factory(array(
