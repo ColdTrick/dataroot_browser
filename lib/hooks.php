@@ -37,7 +37,7 @@ function dataroot_browser_register_user_hover_menu_hook($hook, $type, $return_va
 	if (!isset($user_dirs[$user->getGUID()])) {
 		$user_dirs[$user->getGUID()] = false;
 		
-		$edl = new Elgg_EntityDirLocator($user->getGUID());
+		$edl = new \Elgg\EntityDirLocator($user->getGUID());
 		$path = $edl->getPath();
 		
 		if (is_dir(elgg_get_data_path() . $path)) {
