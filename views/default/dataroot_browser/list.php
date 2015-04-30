@@ -86,10 +86,11 @@ if ($dir_data !== false) {
 			$file_items .= "<td>" . $owner . "</td>";
 			$file_items .= "<td>" . $writeable . "</td>";
 			$file_items .= "<td>";
-			$file_items .= elgg_view("output/confirmlink", array(
+			$file_items .= elgg_view("output/url", array(
 				"href" => "action/dataroot_browser/delete_file?file=" . urlencode($current_dir . $file),
 				"text" => elgg_view_icon("delete"),
-				"is_trusted" => true
+				"is_trusted" => true,
+				'confirm' => true
 			));
 			$file_items .= "</td>";
 			$file_items .= "</tr>";
