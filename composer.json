@@ -1,0 +1,17 @@
+{
+	"name": "coldtrick/dataroot_browser",
+	"description": "List files and folder from dataroot",
+	"type": "elgg-plugin",
+	"keywords": ["elgg", "plugin", "export"],
+	"license": "GPL-2.0",
+	"support": {
+		"source": "https://github.com/ColdTrick/dataroot_browser",
+		"issues": "https://github.com/ColdTrick/dataroot_browser/issues"
+	},
+	"require": {
+		"composer/installers": "^1.0.8"
+	},
+	"require-dev": {
+		"coldtrick/sniffs": "dev-master"
+	}
+}
