@@ -9,7 +9,18 @@ echo "<div>";
 
 if ($dir_data !== false) {
 	
-	echo elgg_echo("dataroot_browser:list:current_dir") . ": " . $current_dir;
+	$dir_parts = explode('/', trim($current_dir, '/'));
+	
+	$dir_links = [];
+	$temp_dir = '/';
+	foreach ($dir_parts as $part) {
+		$temp_dir .= $part . '/';
+		$dir_links[] = elgg_view('output/url', [
+			'text' => $part,
+			'href' => 'admin/administer_utilities/dataroot_browser?dir=' . urlencode(rtrim($temp_dir, '/')),
+		]);
+	}
+	echo elgg_echo("dataroot_browser:list:current_dir") . ": /" . implode('/', $dir_links);
 	
 	if ($current_dir != "/") {
 		$parent_dir = substr($current_dir, 0, strrpos(elgg_extract("current_dir", $vars), "/"));
