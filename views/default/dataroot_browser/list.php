@@ -57,12 +57,15 @@ foreach ($dh as $file) {
 		$writeable = elgg_echo('option:yes');
 	}
 	
+	$file_path = $current_dir . $file->getFilename();
+	$file_path = trim($file_path, '/');
+	
 	if ($file->isDir()) {
 		
 		if ($file->isReadable()) {
 			$cells[] = elgg_format_element('td', ['class' => $dir_classes], elgg_view('output/url', [
 				'href' => elgg_http_add_url_query_elements($base_url, [
-					'dir' => $current_dir . $file->getFilename(),
+					'dir' => $file_path,
 				]),
 				'text' => $file,
 				'is_trusted' => true,
@@ -85,7 +88,7 @@ foreach ($dh as $file) {
 		$cells[] = elgg_format_element('td', ['class' => $file_classes], elgg_view('output/url', [
 			'text' => $file,
 			'href' => elgg_http_add_url_query_elements($download_url, [
-				'file' => $current_dir . $file->getFilename(),
+				'file' => $file_path,
 			]),
 			'title' => elgg_echo('download'),
 			'is_action' => true,
@@ -97,7 +100,7 @@ foreach ($dh as $file) {
 		$cells[] = elgg_format_element('td', [], $writeable);
 		$cells[] = elgg_format_element('td', [], elgg_view('output/url', [
 			'href' => elgg_http_add_url_query_elements($delete_url, [
-				'file' => $current_dir . $file->getFilename(),
+				'file' => $file_path,
 			]),
 			'text' => elgg_view_icon('delete'),
 			'is_trusted' => true,
