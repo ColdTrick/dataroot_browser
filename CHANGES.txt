@@ -1,6 +1,11 @@
 Version history
 ===============
 
+3.2 (2016-01-20):
+
+- added: folder breadcrumb is now clickable
+- fixed: using wrong filepath
+
 3.1 (2015-07-08):
 
 - added: composer support
