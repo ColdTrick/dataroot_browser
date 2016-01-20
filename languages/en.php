@@ -7,6 +7,7 @@ return array(
 	'dataroot_browser:menu:user_hover' => "Browse datadirectory",
 	
 	'dataroot_browser:list:current_dir' => "Current",
+	'dataroot_browser:list:root_dir' => "dataroot",
 	'dataroot_browser:list:invalid_dir' => "Invalid directory. Restart browsing",
 
 	'dataroot_browser:list:name' => "Name",
@@ -18,7 +19,6 @@ return array(
 	// actions
 	// delete file
 	'dataroot_browser:actions:delete_file:error:input' => "Incorrect input to delete a file",
-	'dataroot_browser:actions:delete_file:error:path' => "The filename has directory elements, this is not allowed",
 	'dataroot_browser:actions:delete_file:error:exists' => "The filename doesn't exists on the system or is a directory",
 	'dataroot_browser:actions:delete_file:error:delete' => "An unknown error has occured while deleting the file",
 	'dataroot_browser:actions:delete_file:success' => "The file was successfully deleted",
