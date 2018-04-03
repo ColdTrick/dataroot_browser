@@ -1,35 +1,32 @@
 <?php
 
-$file = get_input('file');
-$file = sanitise_filepath($file, false);
+use Elgg\Project\Paths;
+use Elgg\Filesystem\MimeTypeDetector;
+
+$file = ltrim(Paths::sanitize(get_input('file'), false), '/');
 
 // no file
 if (empty($file)) {
-	forward(REFERER);
+	return elgg_error_response(elgg_echo('error:missing_data'));
 }
 
 $file_path = elgg_get_data_path() . $file;
 // file doesn't exist or is directory
 if (!file_exists($file_path) || is_dir($file_path)) {
-	forward(REFERER);
+	return elgg_error_response(elgg_echo('notfound'));
 }
 
 $contents = file_get_contents($file_path);
 // empty file
 if (empty($contents)) {
-	forward(REFERER);
+	return elgg_error_response(elgg_echo('notfound'));
 }
 
 $filename = basename($file_path);
-
-$mimetype = 'application/octet-stream';
-if (is_callable('finfo_open')) {
-	$finfo = finfo_open(FILEINFO_MIME_TYPE);
-	$mimetype = finfo_file($finfo, $file_path);
-}
+$mtd = new MimeTypeDetector();
 
 header("Pragma: public");
-header("Content-type: {$mimetype}");
+header("Content-type: {$mtd->getType($file_path)}");
 header("Content-Disposition: attachment; filename=\"{$filename}\"");
 header("Content-Length: " . strlen($contents));
 

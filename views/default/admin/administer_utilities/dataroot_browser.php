@@ -1,7 +1,8 @@
 <?php
 
-$current_dir = get_input('dir');
-$current_dir = sanitise_filepath($current_dir);
+use Elgg\Project\Paths;
+
+$current_dir = Paths::sanitize(get_input('dir'));
 
 echo elgg_view('dataroot_browser/list', [
 	'current_dir' => $current_dir,

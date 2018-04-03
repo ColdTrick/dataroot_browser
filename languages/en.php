@@ -6,8 +6,7 @@ return array(
 	'admin:administer_utilities:dataroot_browser' => "Dataroot Browser",
 	'dataroot_browser:menu:user_hover' => "Browse datadirectory",
 	
-	'dataroot_browser:list:current_dir' => "Current",
-	'dataroot_browser:list:root_dir' => "dataroot",
+	'dataroot_browser:list:root_dir' => "Dataroot",
 	'dataroot_browser:list:invalid_dir' => "Invalid directory. Restart browsing",
 
 	'dataroot_browser:list:name' => "Name",
@@ -15,6 +14,8 @@ return array(
 	'dataroot_browser:list:owner' => "Owner",
 	'dataroot_browser:list:writeable' => "Writeable",
 	'dataroot_browser:list:modified' => "Last modified",
+	
+	'dataroot_browser:list:no_content' => "No files or folders found",
 
 	// actions
 	// delete file

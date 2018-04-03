@@ -1,39 +1,32 @@
 <?php
 
-$current_dir = elgg_extract('current_dir', $vars);
-$current_dir = sanitise_filepath($current_dir);
+use Elgg\Project\Paths;
+
+$current_dir = ltrim(Paths::sanitize(elgg_extract('current_dir', $vars)), '/');
+
+// breadcrumb
+echo elgg_view('dataroot_browser/breadcrumb', $vars);
 
 $root_dir = elgg_get_data_path() . $current_dir;
 if (!is_dir($root_dir)) {
-	echo elgg_format_element('div', [], elgg_echo('dataroot_browser:list:invalid_dir'));
+	echo elgg_view_message('error', elgg_echo('dataroot_browser:list:invalid_dir'));
 	return;
 }
-
-$dir_data = scandir($root_dir);
-
-// breadcrumb
-echo elgg_view('dataroot_browser/breadcrumb', [
-	'current_dir' => $current_dir,
-]);
 
 // go through all folders/file in this dir
 $dir_items = [];
 $file_items = [];
 
 $dir_classes = [
-	'dataroot_browser_name',
-	'dataroot_browser_folder',
+	'dataroot-browser-folder',
 ];
 $file_classes = [
-	'dataroot_browser_name',
-	'dataroot_browser_file',
+	'dataroot-browser-file',
 ];
 
 $posix_getpwuid = is_callable('posix_getpwuid');
 
 $base_url = 'admin/administer_utilities/dataroot_browser';
-$download_url = 'action/dataroot_browser/download';
-$delete_url = 'action/dataroot_browser/delete_file';
 
 $dh = new DirectoryIterator($root_dir);
 foreach ($dh as $file) {
@@ -69,6 +62,7 @@ foreach ($dh as $file) {
 				]),
 				'text' => $file,
 				'is_trusted' => true,
+				'icon' => 'folder',
 			]));
 		} else {
 			$cells[] = $file->getFilename();
@@ -76,40 +70,46 @@ foreach ($dh as $file) {
 		$cells[] = elgg_format_element('td', [], $last_modified);
 		$cells[] = elgg_format_element('td', [], '&nbsp;');
 		$cells[] = elgg_format_element('td', [], $owner);
-		$cells[] = elgg_format_element('td', [], $writeable);
-		$cells[] = elgg_format_element('td', [], '&nbsp;');
+		$cells[] = elgg_format_element('td', ['class' => 'center'], $writeable);
+		$cells[] = elgg_format_element('td', ['class' => 'center'], '&nbsp;');
 		
 		// add to correct table section
-		$dir_items[] = elgg_format_element('tr', [], implode('', $cells));
+		$dir_items[$file->getFilename()] = elgg_format_element('tr', [], implode('', $cells));
 	} else {
 		
-		$size = dataroot_browser_format_size($file->getSize());
+		$size = elgg_format_bytes($file->getSize());
 		
 		$cells[] = elgg_format_element('td', ['class' => $file_classes], elgg_view('output/url', [
 			'text' => $file,
-			'href' => elgg_http_add_url_query_elements($download_url, [
+			'href' => elgg_generate_action_url('dataroot_browser/download', [
 				'file' => $file_path,
 			]),
 			'title' => elgg_echo('download'),
 			'is_action' => true,
 			'is_trusted' => true,
+			'icon' => 'file',
 		]));
 		$cells[] = elgg_format_element('td', [], $last_modified);
 		$cells[] = elgg_format_element('td', [], $size);
 		$cells[] = elgg_format_element('td', [], $owner);
-		$cells[] = elgg_format_element('td', [], $writeable);
-		$cells[] = elgg_format_element('td', [], elgg_view('output/url', [
-			'href' => elgg_http_add_url_query_elements($delete_url, [
+		$cells[] = elgg_format_element('td', ['class' => 'center'], $writeable);
+		$cells[] = elgg_format_element('td', ['class' => 'center'], elgg_view('output/url', [
+			'href' => elgg_generate_action_url('dataroot_browser/delete_file', [
 				'file' => $file_path,
 			]),
 			'text' => elgg_view_icon('delete'),
 			'is_trusted' => true,
-			'confirm' => true,
+			'confirm' => elgg_echo('deleteconfirm'),
 		]));
 		
 		// add to correct table section
-		$file_items[] = elgg_format_element('tr', [], implode('', $cells));
+		$file_items[$file->getFilename()] = elgg_format_element('tr', [], implode('', $cells));
 	}
+}
+
+if (empty($dir_items) && empty($file_items)) {
+	echo elgg_view_message('notice', elgg_echo('dataroot_browser:list:no_content'));
+	return;
 }
 
 // build table
@@ -117,12 +117,12 @@ $table_contents = [];
 
 // table header
 $cells = [];
-$cells[] = elgg_format_element('th', ['class' => 'dataroot_browser_name'], elgg_echo('dataroot_browser:list:name'));
+$cells[] = elgg_format_element('th', [], elgg_echo('dataroot_browser:list:name'));
 $cells[] = elgg_format_element('th', [], elgg_echo('dataroot_browser:list:modified'));
 $cells[] = elgg_format_element('th', [], elgg_echo('dataroot_browser:list:size'));
 $cells[] = elgg_format_element('th', [], elgg_echo('dataroot_browser:list:owner'));
-$cells[] = elgg_format_element('th', [], elgg_echo('dataroot_browser:list:writeable'));
-$cells[] = elgg_format_element('th', [], elgg_echo('delete'));
+$cells[] = elgg_format_element('th', ['class' => 'center'], elgg_echo('dataroot_browser:list:writeable'));
+$cells[] = elgg_format_element('th', ['class' => 'center'], elgg_echo('delete'));
 
 $header_row = elgg_format_element('tr', [], implode('', $cells));
 $table_contents[] = elgg_format_element('thead', [], $header_row);
@@ -130,10 +130,14 @@ $table_contents[] = elgg_format_element('thead', [], $header_row);
 // add rows
 $rows = '';
 if (!empty($dir_items)) {
+	uksort($dir_items, 'strnatcasecmp');
+	
 	$rows .= implode('', $dir_items);
 }
 
 if (!empty($file_items)) {
+	uksort($dir_items, 'strnatcasecmp');
+	
 	$rows .= implode('', $file_items);
 }
 
@@ -141,7 +145,6 @@ $table_contents[] = elgg_format_element('tbody', [], $rows);
 
 // draw table
 $table_attributes = [
-	'id' => 'dataroot_browser_list',
 	'class' => 'elgg-table',
 ];
 echo elgg_format_element('table', $table_attributes, implode('', $table_contents));
