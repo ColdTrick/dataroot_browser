@@ -1,6 +1,10 @@
 Version history
 ===============
 
+3.2.1 (2018-04-03):
+
+- several small chores/fixes
+
 3.2 (2016-01-20):
 
 - added: folder breadcrumb is now clickable
