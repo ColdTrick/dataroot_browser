@@ -1,6 +1,7 @@
 Dataroot browser
 ================
 
+![Elgg 3.0](https://img.shields.io/badge/Elgg-3.0-green.svg)
 [![Build Status](https://scrutinizer-ci.com/g/ColdTrick/dataroot_browser/badges/build.png?b=master)](https://scrutinizer-ci.com/g/ColdTrick/dataroot_browser/build-status/master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ColdTrick/dataroot_browser/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/ColdTrick/dataroot_browser/?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/coldtrick/dataroot_browser/v/stable.svg)](https://packagist.org/packages/coldtrick/dataroot_browser)

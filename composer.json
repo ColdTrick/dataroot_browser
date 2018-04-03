@@ -3,7 +3,7 @@
 	"description": "List files and folder from dataroot",
 	"type": "elgg-plugin",
 	"keywords": ["elgg", "plugin"],
-	"license": "GPL-2.0",
+	"license": "GPL-2.0-only",
 	"support": {
 		"source": "https://github.com/ColdTrick/dataroot_browser",
 		"issues": "https://github.com/ColdTrick/dataroot_browser/issues"
@@ -16,6 +16,6 @@
 		"coldtrick/releases": "dev-master"
 	},
 	"conflict": {
-		"elgg/elgg": "<1.10"
+		"elgg/elgg": "<3.0"
 	}
 }
