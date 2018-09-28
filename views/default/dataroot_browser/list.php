@@ -65,7 +65,7 @@ foreach ($dh as $file) {
 				'icon' => 'folder',
 			]));
 		} else {
-			$cells[] = $file->getFilename();
+			$cells[] = elgg_format_element('td', [], $file->getFilename());
 		}
 		$cells[] = elgg_format_element('td', [], $last_modified);
 		$cells[] = elgg_format_element('td', [], '&nbsp;');
