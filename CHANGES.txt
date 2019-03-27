@@ -1,6 +1,13 @@
 Version history
 ===============
 
+4.0 (2019-03-27):
+
+- added: Dutch translation
+- changed: increased minimal Elgg version requirement to 3.0
+- changed: plugin rewrite for Elgg 3.0
+- fixed: table formatting error
+
 3.2.1 (2018-04-03):
 
 - several small chores/fixes
