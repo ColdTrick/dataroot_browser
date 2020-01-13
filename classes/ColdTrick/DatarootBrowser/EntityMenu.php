@@ -22,7 +22,12 @@ class EntityMenu {
 			return;
 		}
 		
-		$edl = new \Elgg\EntityDirLocator($entity->guid);
+		try {
+			$edl = new \Elgg\EntityDirLocator($entity->guid);
+		} catch (\InvalidArgumentException $e) {
+			elgg_log($e, 'ERROR');
+			return;
+		}
 		$path = $edl->getPath();
 		
 		if (!is_dir(elgg_get_data_path() . $path)) {

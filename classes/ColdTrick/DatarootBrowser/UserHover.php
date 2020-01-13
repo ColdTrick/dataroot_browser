@@ -27,7 +27,12 @@ class UserHover {
 		if (!isset($user_dirs[$user->guid])) {
 			$user_dirs[$user->guid] = false;
 			
-			$edl = new \Elgg\EntityDirLocator($user->guid);
+			try {
+				$edl = new \Elgg\EntityDirLocator($user->guid);
+			} catch (\InvalidArgumentException $e) {
+				elgg_log($e, 'ERROR');
+				return;
+			}
 			$path = $edl->getPath();
 			
 			if (is_dir(elgg_get_data_path() . $path)) {
