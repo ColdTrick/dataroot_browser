@@ -1,12 +1,10 @@
 <?php
 
-use ColdTrick\DatarootBrowser\Bootstrap;
-
 return [
 	'plugin' => [
 		'version' => '5.0',
 	],
-	'hooks' => [
+	'events' => [
 		'register' => [
 			'menu:dataroot_browser:breadcrumb' => [
 				'\ColdTrick\DatarootBrowser\Breadcrumb::registerPath' => [],
@@ -14,8 +12,8 @@ return [
 			'menu:entity' => [
 				'\ColdTrick\DatarootBrowser\EntityMenu::register' => [],
 			],
-			'menu:page' => [
-				'\ColdTrick\DatarootBrowser\PageMenu::registerDatarootBrowser' => [],
+			'menu:admin_header' => [
+				'\ColdTrick\DatarootBrowser\AdminHeaderMenu::registerDatarootBrowser' => [],
 			],
 			'menu:user_hover' => [
 				'\ColdTrick\DatarootBrowser\UserHover::register' => [],

@@ -25,10 +25,10 @@ if (empty($contents)) {
 $filename = basename($file_path);
 $mtd = new MimeTypeDetector();
 
-header("Pragma: public");
+header('Pragma: public');
 header("Content-type: {$mtd->getType($file_path)}");
 header("Content-Disposition: attachment; filename=\"{$filename}\"");
-header("Content-Length: " . strlen($contents));
+header('Content-Length: ' . strlen($contents));
 
 echo $contents;
 

@@ -2,25 +2,31 @@
 
 namespace ColdTrick\DatarootBrowser;
 
+use Elgg\Menu\MenuItems;
 use Elgg\Project\Paths;
 
+/**
+ * Register menu items to the dataroot_browser:breadcrumb menu
+ */
 class Breadcrumb {
 	
 	/**
 	 * Register the dataroot breadcrumb
 	 *
-	 * @param \Elgg\Hook $hook
+	 * @param \Elgg\Event $event 'register', 'menu:dataroot_browser:breadcrumb'
 	 *
-	 * @return void|\ElggMenuItem[]
+	 * @return null|MenuItems
 	 */
-	public static function registerPath(\Elgg\Hook $hook) {
+	public static function registerPath(\Elgg\Event $event): ?MenuItems {
 		
-		$dir = ltrim(Paths::sanitize($hook->getParam('current_dir')), '/');
+		$dir = ltrim(Paths::sanitize($event->getParam('current_dir')), '/');
 		
 		$dataroot = elgg_get_data_path();
 		$base_url = 'admin/administer_utilities/dataroot_browser';
 		
-		$return = [];
+		/* @var $return MenuItems */
+		$return = $event->getValue();
+		$return->fill([]);
 		
 		// root
 		$return[] = \ElggMenuItem::factory([

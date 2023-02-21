@@ -54,7 +54,6 @@ foreach ($dh as $file) {
 	$file_path = trim($file_path, '/');
 	
 	if ($file->isDir()) {
-		
 		if ($file->isReadable()) {
 			$cells[] = elgg_format_element('td', ['class' => $dir_classes], elgg_view('output/url', [
 				'href' => elgg_http_add_url_query_elements($base_url, [
@@ -67,6 +66,7 @@ foreach ($dh as $file) {
 		} else {
 			$cells[] = elgg_format_element('td', [], $file->getFilename());
 		}
+		
 		$cells[] = elgg_format_element('td', [], $last_modified);
 		$cells[] = elgg_format_element('td', [], '&nbsp;');
 		$cells[] = elgg_format_element('td', [], $owner);
@@ -76,7 +76,6 @@ foreach ($dh as $file) {
 		// add to correct table section
 		$dir_items[$file->getFilename()] = elgg_format_element('tr', [], implode('', $cells));
 	} else {
-		
 		$size = elgg_format_bytes($file->getSize());
 		
 		$cells[] = elgg_format_element('td', ['class' => $file_classes], elgg_view('output/url', [
@@ -136,7 +135,7 @@ if (!empty($dir_items)) {
 }
 
 if (!empty($file_items)) {
-	uksort($dir_items, 'strnatcasecmp');
+	uksort($file_items, 'strnatcasecmp');
 	
 	$rows .= implode('', $file_items);
 }

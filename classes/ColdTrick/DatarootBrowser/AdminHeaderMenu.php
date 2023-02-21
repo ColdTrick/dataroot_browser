@@ -2,28 +2,33 @@
 
 namespace ColdTrick\DatarootBrowser;
 
-class PageMenu {
+use Elgg\Menu\MenuItems;
+
+/**
+ * Add menu items to the admin_header menu
+ */
+class AdminHeaderMenu {
 	
 	/**
 	 * Register admin menu item
 	 *
-	 * @param \Elgg\Hook $hook 'register', 'menu:page'
+	 * @param \Elgg\Event $event 'register', 'menu:admin_header'
 	 *
-	 * @return void|\ElggMenuItem[]
+	 * @return null|MenuItems
 	 */
-	public static function registerDatarootBrowser(\Elgg\Hook $hook) {
+	public static function registerDatarootBrowser(\Elgg\Event $event): ?MenuItems {
 		
 		if (!elgg_is_admin_logged_in() || !elgg_in_context('admin')) {
-			return;
+			return null;
 		}
 		
-		$return = $hook->getValue();
+		/* @var $return MenuItems */
+		$return = $event->getValue();
 		
 		$return[] = \ElggMenuItem::factory([
 			'name' => 'dataroot_browser',
 			'text' => elgg_echo('admin:administer_utilities:dataroot_browser'),
 			'href' => '/admin/administer_utilities/dataroot_browser',
-			'section' => 'administer',
 			'parent_name' => 'administer_utilities',
 		]);
 		
