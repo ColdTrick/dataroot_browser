@@ -1,6 +1,6 @@
 <?php
 
-namespace ColdTrick\DatarootBrowser;
+namespace ColdTrick\DatarootBrowser\Menus;
 
 use Elgg\Menu\MenuItems;
 

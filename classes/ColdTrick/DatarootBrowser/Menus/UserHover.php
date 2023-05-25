@@ -1,13 +1,16 @@
 <?php
 
-namespace ColdTrick\DatarootBrowser;
+namespace ColdTrick\DatarootBrowser\Menus;
 
+use ColdTrick\DatarootBrowser\EntityMenuItem;
 use Elgg\Menu\MenuItems;
 
 /**
  * Add menu items to the user_hover menu
  */
 class UserHover {
+	
+	use EntityMenuItem;
 	
 	/**
 	 * Add a menu item to the user hover dropdown
@@ -32,26 +35,11 @@ class UserHover {
 		if (!isset($user_dirs[$user->guid])) {
 			$user_dirs[$user->guid] = false;
 			
-			try {
-				$edl = new \Elgg\EntityDirLocator($user->guid);
-			} catch (\InvalidArgumentException $e) {
-				elgg_log($e, 'ERROR');
-				return null;
-			}
-			
-			$path = $edl->getPath();
-			
-			if (is_dir(elgg_get_data_path() . $path)) {
-				$user_dirs[$user->guid] = \ElggMenuItem::factory([
-					'name' => 'dataroot-browser',
-					'icon' => 'folder-open',
-					'text' => elgg_echo('dataroot_browser:menu:user_hover'),
-					'href' => elgg_http_add_url_query_elements('admin/administer_utilities/dataroot_browser', [
-						'dir' => $path,
-					]),
-					'is_trusted' => true,
-					'section' => 'admin',
-				]);
+			$menu_item = self::getEntityMenuItem($user);
+			if ($menu_item instanceof \ElggMenuItem) {
+				$menu_item->setSection('admin');
+				
+				$user_dirs[$user->guid] = $menu_item;
 			}
 		}
 		
