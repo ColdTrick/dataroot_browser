@@ -20,6 +20,9 @@ return [
 			'menu:entity' => [
 				'\ColdTrick\DatarootBrowser\Menus\EntityMenu::register' => [],
 			],
+			'menu:entity_explorer' => [
+				'\ColdTrick\DatarootBrowser\Menus\EntityExplorer::register' => [],
+			],
 			'menu:admin_header' => [
 				'\ColdTrick\DatarootBrowser\Menus\AdminHeaderMenu::registerDatarootBrowser' => [],
 			],
