@@ -4,6 +4,9 @@ namespace ColdTrick\DatarootBrowser;
 
 use Elgg\Menu\MenuItems;
 
+/**
+ * Helper trait to get the dataroot browser menu item
+ */
 trait EntityMenuItem {
 	
 	/**
