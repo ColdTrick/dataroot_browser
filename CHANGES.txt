@@ -1,6 +1,12 @@
 Version history
 ===============
 
+6.0 (2023-06-02):
+
+- added: entity explorer menu item
+- changed: conflict with Elgg < 5.0
+- changed: rewrite for Elgg 5.0
+
 5.0 (2021-09-27):
 
 - changed: updated for Elgg 4
