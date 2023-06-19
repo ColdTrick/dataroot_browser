@@ -25,7 +25,7 @@ class EntityMenu {
 		}
 		
 		$entity = $event->getEntityParam();
-		if (!$entity instanceof \ElggEntity) {
+		if (!$entity instanceof \ElggEntity || empty($entity->guid)) {
 			return null;
 		}
 		
