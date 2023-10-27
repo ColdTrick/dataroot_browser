@@ -29,7 +29,7 @@ class AdminHeaderMenu {
 			'name' => 'dataroot_browser',
 			'text' => elgg_echo('admin:administer_utilities:dataroot_browser'),
 			'href' => '/admin/administer_utilities/dataroot_browser',
-			'parent_name' => 'administer_utilities',
+			'parent_name' => 'utilities',
 		]);
 		
 		return $return;
