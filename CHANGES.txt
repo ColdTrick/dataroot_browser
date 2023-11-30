@@ -1,6 +1,10 @@
 Version history
 ===============
 
+7.0 (2023-11-30):
+
+- changed: updated for Elgg 5.1
+
 6.0.1 (2023-07-26):
 
 - fixed: do not try to add menu item on non saved entities
