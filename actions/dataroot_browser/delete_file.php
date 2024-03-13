@@ -2,7 +2,7 @@
 
 use Elgg\Project\Paths;
 
-$file = ltrim(Paths::sanitize(get_input('file'), false), '/');
+$file = ltrim(Paths::sanitize(get_input('file', null, false), false), '/');
 
 if (empty($file)) {
 	return elgg_error_response(elgg_echo('dataroot_browser:actions:delete_file:error:input'));
