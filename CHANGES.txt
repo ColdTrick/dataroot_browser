@@ -1,6 +1,10 @@
 Version history
 ===============
 
+7.0.1 (2024-04-03):
+
+- fixed: allow deletions of files with special chars
+
 7.0 (2023-11-30):
 
 - changed: updated for Elgg 5.1
