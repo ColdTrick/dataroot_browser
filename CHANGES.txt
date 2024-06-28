@@ -1,6 +1,10 @@
 Version history
 ===============
 
+7.0.2 (2024-06-28):
+
+- several small chores/fixes
+
 7.0.1 (2024-04-03):
 
 - fixed: allow deletions of files with special chars
