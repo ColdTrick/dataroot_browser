@@ -18,7 +18,7 @@ trait EntityMenuItem {
 		try {
 			$edl = new \Elgg\EntityDirLocator($entity->guid);
 		} catch (\InvalidArgumentException $e) {
-			elgg_log($e, 'ERROR');
+			elgg_log($e, \Psr\Log\LogLevel::ERROR);
 			return null;
 		}
 		
