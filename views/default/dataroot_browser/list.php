@@ -93,11 +93,11 @@ foreach ($dh as $file) {
 		$cells[] = elgg_format_element('td', [], $owner);
 		$cells[] = elgg_format_element('td', ['class' => 'center'], $writeable);
 		$cells[] = elgg_format_element('td', ['class' => 'center'], elgg_view('output/url', [
+			'icon' => 'delete',
+			'text' => false,
 			'href' => elgg_generate_action_url('dataroot_browser/delete_file', [
 				'file' => $file_path,
 			]),
-			'text' => elgg_view_icon('delete'),
-			'is_trusted' => true,
 			'confirm' => elgg_echo('deleteconfirm'),
 		]));
 		
