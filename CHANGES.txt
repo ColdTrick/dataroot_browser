@@ -1,6 +1,10 @@
 Version history
 ===============
 
+7.0.4 (2025-03-27):
+
+- fixed: use correct styling of icon only URLs
+
 7.0.3 (2024-12-11):
 
 - several small chores/fixes
