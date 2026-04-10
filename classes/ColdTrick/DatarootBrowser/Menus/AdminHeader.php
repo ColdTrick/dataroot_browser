@@ -7,7 +7,7 @@ use Elgg\Menu\MenuItems;
 /**
  * Add menu items to the admin_header menu
  */
-class AdminHeaderMenu {
+class AdminHeader {
 	
 	/**
 	 * Register admin menu item
@@ -22,13 +22,15 @@ class AdminHeaderMenu {
 			return null;
 		}
 		
-		/* @var $return MenuItems */
+		/** @var MenuItems $return */
 		$return = $event->getValue();
 		
 		$return[] = \ElggMenuItem::factory([
 			'name' => 'dataroot_browser',
 			'text' => elgg_echo('admin:administer_utilities:dataroot_browser'),
-			'href' => '/admin/administer_utilities/dataroot_browser',
+			'href' => elgg_generate_url('admin', [
+				'segments' => 'administer_utilities/dataroot_browser',
+			]),
 			'parent_name' => 'utilities',
 		]);
 		

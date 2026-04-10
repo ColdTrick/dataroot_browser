@@ -26,8 +26,6 @@ $file_classes = [
 
 $posix_getpwuid = is_callable('posix_getpwuid');
 
-$base_url = 'admin/administer_utilities/dataroot_browser';
-
 $dh = new DirectoryIterator($root_dir);
 foreach ($dh as $file) {
 	$cells = [];
@@ -56,11 +54,11 @@ foreach ($dh as $file) {
 	if ($file->isDir()) {
 		if ($file->isReadable()) {
 			$cells[] = elgg_format_element('td', ['class' => $dir_classes], elgg_view('output/url', [
-				'href' => elgg_http_add_url_query_elements($base_url, [
+				'href' => elgg_generate_url('admin', [
+					'segments' => 'administer_utilities/dataroot_browser',
 					'dir' => $file_path,
 				]),
 				'text' => $file,
-				'is_trusted' => true,
 				'icon' => 'folder',
 			]));
 		} else {
@@ -85,7 +83,6 @@ foreach ($dh as $file) {
 			]),
 			'title' => elgg_echo('download'),
 			'is_action' => true,
-			'is_trusted' => true,
 			'icon' => 'file',
 		]));
 		$cells[] = elgg_format_element('td', [], $last_modified);

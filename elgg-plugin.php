@@ -1,5 +1,7 @@
 <?php
 
+use ColdTrick\DatarootBrowser\Controllers\Actions\Download;
+
 return [
 	'plugin' => [
 		'version' => '7.0.4',
@@ -10,10 +12,14 @@ return [
 		],
 		'dataroot_browser/download' => [
 			'access' => 'admin',
+			'controller' => Download::class,
 		],
 	],
 	'events' => [
 		'register' => [
+			'menu:admin_header' => [
+				'\ColdTrick\DatarootBrowser\Menus\AdminHeader::registerDatarootBrowser' => [],
+			],
 			'menu:dataroot_browser:breadcrumb' => [
 				'\ColdTrick\DatarootBrowser\Menus\Breadcrumb::registerPath' => [],
 			],
@@ -22,9 +28,6 @@ return [
 			],
 			'menu:entity_explorer' => [
 				'\ColdTrick\DatarootBrowser\Menus\EntityExplorer::register' => [],
-			],
-			'menu:admin_header' => [
-				'\ColdTrick\DatarootBrowser\Menus\AdminHeaderMenu::registerDatarootBrowser' => [],
 			],
 			'menu:user_hover' => [
 				'\ColdTrick\DatarootBrowser\Menus\UserHover::register' => [],

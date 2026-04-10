@@ -10,6 +10,6 @@
 		"issues": "https://github.com/ColdTrick/dataroot_browser/issues"
 	},
 	"conflict": {
-		"elgg/elgg": "<5.1"
+		"elgg/elgg": "<7.0"
 	}
 }

@@ -30,7 +30,7 @@ class EntityExplorer {
 			return null;
 		}
 		
-		/* @var $result MenuItems */
+		/** @var MenuItems $result */
 		$result = $event->getValue();
 		
 		$menu_item->setLinkClass(['elgg-button', 'elgg-button-action']);

@@ -2,6 +2,9 @@
 
 namespace ColdTrick\DatarootBrowser;
 
+use Elgg\EntityDirLocator;
+use Psr\Log\LogLevel;
+
 /**
  * Helper trait to get the dataroot browser menu item
  */
@@ -16,9 +19,9 @@ trait EntityMenuItem {
 	 */
 	protected static function getEntityMenuItem(\ElggEntity $entity): ?\ElggMenuItem {
 		try {
-			$edl = new \Elgg\EntityDirLocator($entity->guid);
+			$edl = new EntityDirLocator($entity->guid);
 		} catch (\InvalidArgumentException $e) {
-			elgg_log($e, \Psr\Log\LogLevel::ERROR);
+			elgg_log($e, LogLevel::ERROR);
 			return null;
 		}
 		
@@ -32,10 +35,10 @@ trait EntityMenuItem {
 			'name' => 'dataroot-browser',
 			'icon' => 'folder-open',
 			'text' => elgg_echo('dataroot_browser:menu:user_hover'),
-			'href' => elgg_http_add_url_query_elements('admin/administer_utilities/dataroot_browser', [
+			'href' => elgg_generate_url('admin', [
+				'segments' => 'administer_utilities/dataroot_browser',
 				'dir' => $path,
 			]),
-			'is_trusted' => true,
 		]);
 	}
 }

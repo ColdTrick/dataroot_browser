@@ -18,13 +18,11 @@ class Breadcrumb {
 	 * @return null|MenuItems
 	 */
 	public static function registerPath(\Elgg\Event $event): ?MenuItems {
-		
 		$dir = ltrim(Paths::sanitize($event->getParam('current_dir')), '/');
 		
 		$dataroot = elgg_get_data_path();
-		$base_url = 'admin/administer_utilities/dataroot_browser';
 		
-		/* @var $return MenuItems */
+		/** @var MenuItems $return */
 		$return = $event->getValue();
 		$return->fill([]);
 		
@@ -32,7 +30,9 @@ class Breadcrumb {
 		$return[] = \ElggMenuItem::factory([
 			'name' => 'root',
 			'text' => elgg_echo('dataroot_browser:list:root_dir'),
-			'href' => $base_url,
+			'href' => elgg_generate_url('admin', [
+				'segments' => 'administer_utilities/dataroot_browser',
+			]),
 			'priority' => 1,
 		]);
 		
@@ -49,7 +49,8 @@ class Breadcrumb {
 			$return[] = \ElggMenuItem::factory([
 				'name' => "dataroot_browser_{$index}",
 				'text' => $part,
-				'href' => elgg_http_add_url_query_elements($base_url, [
+				'href' => elgg_generate_url('admin', [
+					'segments' => 'administer_utilities/dataroot_browser',
 					'dir' => implode('/', $stack),
 				]),
 				'priority' => 10 + $index,
