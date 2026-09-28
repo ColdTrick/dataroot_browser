@@ -34,6 +34,8 @@ class EntityMenu {
 			return null;
 		}
 		
+		$menu_item->setParentName('admin');
+		
 		/** @var MenuItems $return_value */
 		$return_value = $event->getValue();
 		
