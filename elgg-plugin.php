@@ -4,7 +4,7 @@ use ColdTrick\DatarootBrowser\Controllers\Actions\Download;
 
 return [
 	'plugin' => [
-		'version' => '8.0',
+		'version' => '9.0',
 	],
 	'actions' => [
 		'dataroot_browser/delete_file' => [
